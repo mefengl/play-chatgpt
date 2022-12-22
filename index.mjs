@@ -10,8 +10,13 @@ const api = new ChatGPTAPIBrowser({
 await api.initSession()
 
 async function say(what) {
-  const result = await api.sendMessage(what)
-  return result?.response
+  try {
+    const result = await api.sendMessage(what)
+    return result?.response
+  } catch (e) {
+    console.log(e)
+    return 'Error'
+  }
 }
 
 const app = express()
